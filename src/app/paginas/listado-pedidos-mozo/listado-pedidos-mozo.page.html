@@ -1,0 +1,199 @@
+<ion-content>
+    <ion-card-header>
+        <div class="contenedor-botones">
+          <ion-fab horizontal="start" slot="fixed">
+            <ion-fab-button class="fab-color" (click)="MostrarPedidosEnRevision()">
+                <ion-icon name="clipboard"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          <ion-fab horizontal="start" slot="fixed">
+            <ion-fab-button class="fab-color" (click)="MostrarPedidosEnPreparacion()">
+                <ion-icon name="restaurant"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          <ion-fab horizontal="start" slot="fixed">
+            <ion-fab-button class="fab-color" (click)="MostrarPedidosCocinados()">
+                <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          <ion-fab horizontal="start" slot="fixed">
+            <ion-fab-button class="fab-color" (click)="MostrarPedidosACobrar()">
+                <ion-icon name="card"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
+      </ion-card-header>
+    <div class="container">
+        <div *ngIf="mostrarPedidosEnRevision">
+            <div *ngIf="listadoPedidosEnRevision.length == 0" class="no-pedidos">
+                <h1 class="ion-text-center">No hay pedidos por aprobar</h1>
+                <ion-icon name="alert-circle"></ion-icon>
+            </div>
+            <div class="contenedor-pedidos">
+                <div class="card" *ngFor="let pedido of listadoPedidosEnRevision">
+                    <div class="card-header">Mesa {{pedido.mesa}}</div>
+                    <div class="card-body">
+                        <table class="table table-bordered" style="color: #ffffff;">
+                            <thead>
+                              <tr>
+                                <th>PRODUCTO</th>
+                                <th>CANTIDAD</th>
+                                <th>PRECIO</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <ng-container *ngFor="let producto of AgruparProductos(pedido.productos)">
+                                <tr>
+                                  <td>{{producto.nombre}}</td>
+                                  <td *ngIf="producto.cantidad > 1">{{producto.cantidad}}</td>
+                                  <td *ngIf="producto.cantidad === 1">1</td>
+                                  <td>${{producto.precio * producto.cantidad}}</td>
+                                </tr>
+                              </ng-container>
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;">TOTAL: ${{pedido.total}}</td>
+                              </tr>
+                            </tfoot>
+                          </table>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn" style="background-color: #1B4965; color: white;" (click)="AceptarPedido(pedido)">Confirmar</button>
+                        <button class="btn btn-danger" (click)="RechazarPedido(pedido)">Rechazar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="mostrarPedidosEnPreparacion">
+            <div *ngIf="listadoPedidosEnPreparacion.length == 0" class="no-pedidos">
+                <h1 class="ion-text-center">No hay pedidos en preparación</h1>
+                <ion-icon name="alert-circle"></ion-icon>
+            </div>
+            <div class="contenedor-pedidos">
+                <div class="card" *ngFor="let pedido of listadoPedidosEnPreparacion">
+                    <div class="card-header">Mesa {{pedido.mesa}}</div>
+                    <div class="card-body">
+                        <table class="table table-bordered" style="color: #ffffff;">
+                            <thead>
+                              <tr>
+                                <th>PRODUCTO</th>
+                                <th>CANTIDAD</th>
+                                <th>PRECIO</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <ng-container *ngFor="let producto of AgruparProductos(pedido.productos)">
+                                <tr>
+                                  <td>{{producto.nombre}}</td>
+                                  <td *ngIf="producto.cantidad > 1">{{producto.cantidad}}</td>
+                                  <td *ngIf="producto.cantidad === 1">1</td>
+                                  <td>${{producto.precio * producto.cantidad}}</td>
+                                </tr>
+                              </ng-container>
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;">TOTAL: ${{pedido.total}}</td>
+                              </tr>
+                            </tfoot>
+                          </table>
+                    </div>
+                    <div class="card-footer">
+                        <p style="    font-size: 25px; margin-bottom: unset;margin-top: unset;color: white;">En preparación...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="mostrarPedidosAEntregar">
+            <div *ngIf="listadoPedidosAEntregar.length == 0" class="no-pedidos">
+                <h1 class="ion-text-center">No hay pedidos para entregar</h1>
+                <ion-icon name="alert-circle"></ion-icon>
+            </div>
+            <div class="card" *ngFor="let pedido of listadoPedidosAEntregar">
+                <div class="card-header">Mesa {{pedido.mesa}}</div>
+                <div class="card-body">
+                    <table class="table table-bordered" style="color: #ffffff;">
+                        <thead>
+                          <tr>
+                            <th>PRODUCTO</th>
+                            <th>CANTIDAD</th>
+                            <th>PRECIO</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <ng-container *ngFor="let producto of AgruparProductos(pedido.productos)">
+                            <tr>
+                              <td>{{producto.nombre}}</td>
+                              <td *ngIf="producto.cantidad > 1">{{producto.cantidad}}</td>
+                              <td *ngIf="producto.cantidad === 1">1</td>
+                              <td>${{producto.precio * producto.cantidad}}</td>
+                            </tr>
+                          </ng-container>
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;">TOTAL: ${{pedido.total}}</td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                </div>
+                <div class="card-footer">
+                    <p style="color: white;margin-bottom: 0;font-size: 20px;">Proceda a entregar el pedido</p>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="mostrarPedidosACobrar">
+            <div *ngIf="listadoPedidosACobrar.length == 0" class="no-pedidos">
+                <h1 class="ion-text-center">No hay pedidos a cobrar</h1>
+                <ion-icon name="alert-circle"></ion-icon>
+            </div>
+            <div class="card" *ngFor="let pedido of listadoPedidosACobrar">
+                <div class="card-header">Mesa {{pedido.mesa}}</div>
+                <div class="card-body">
+                    <table class="table table-bordered" style="color: #ffffff;">
+                      <thead>
+                        <tr>
+                          <th>PRODUCTO</th>
+                          <th>CANTIDAD</th>
+                          <th>PRECIO</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tbody>
+                          <ng-container *ngFor="let producto of AgruparProductos(pedido.productos)">
+                            <tr>
+                              <td>{{producto.nombre}}</td>
+                              <td *ngIf="producto.cantidad > 1">{{producto.cantidad}}</td>
+                              <td *ngIf="producto.cantidad === 1">1</td>
+                              <td>${{producto.precio * producto.cantidad}}</td>
+                            </tr>
+                          </ng-container>
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;">SubTotal: ${{pedido.total}}</td>
+                          </tr>
+                          <tr>
+                              <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;">Descuento: ${{(pedido.total * pedido.descuentoJuego)/100}}</td>
+                          </tr>
+                          <tr>
+                              <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;">Propina: ${{pedido.propina}}</td>
+                          </tr>
+                          <tr>
+                            <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;">Total a abonar: ${{pedido.propina + pedido.total - ((pedido.total * pedido.descuentoJuego)/100)}}</td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                </div>
+              <button (click)="AprobarPago(pedido)" type="button" id="btn-aprobado" class="btn"><img width="40" src="../../../assets/imagenes/aceptar-el-contorno-del-boton-circular.png" alt=""></button>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+<!-- ******************************* SPINNER *******************************-->
+<div *ngIf="loading" class="custom-spinner">
+    <h1 class="spinnerh1">Cargando...</h1>
+    <img src="../../assets/icon/empresa.png" alt="Custom Spinner" />
+  </div>

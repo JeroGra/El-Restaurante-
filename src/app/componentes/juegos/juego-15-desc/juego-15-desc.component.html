@@ -1,0 +1,33 @@
+<div class="container" style="margin-top: 5rem;">
+    <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+        <ion-fab-button (click)="CerrarJuego()">
+            <ion-icon name="arrow-back"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+  <h1 style="text-align: center;">Aventura Matemática</h1>
+  <p style="font-size: 20px;text-align: center;">{{textoJuego}}</p>
+  <div *ngIf="juegoActivo" class="operacion-container">
+      <p class="numero-1">{{a}}</p>
+      <p class="operacion">{{operador}}</p>
+      <p class="numero-2">{{b}}</p>
+  </div>
+  <div *ngIf="juegoActivo || juegoFinalizado" class="puntuacion-container">
+      <span class="puntuacion">Puntuación: {{ puntuacion }} / 10</span>
+      <span class="intentos">Tiempo: {{ tiempo }}</span>
+  </div>
+  <div *ngIf="juegoFinalizado">
+      <ion-avatar *ngIf="victoria" class="img-victoria">
+        <img src="../../../../assets/imagenes/victoria_aventuraMatematica.png" />
+      </ion-avatar>
+      <ion-avatar *ngIf="!victoria" style="background-color: red;" class="img-derrota">
+        <img src="../../../../assets/imagenes/perdiste_aventuraMatematica.svg" />
+      </ion-avatar>
+  </div>
+  <div *ngIf="juegoActivo" class="opciones-container">
+      <button class="btn-opcion" *ngFor="let respuesta of opciones" (click)="Resolver(respuesta, $event)"
+          [ngClass]="respuestaCorrecta ? 'correcta' : ''" [ngClass]="respuestaIncorrecta ? 'incorrecta' : ''">
+          {{ respuesta }}
+      </button>
+  </div>
+  <button *ngIf="!juegoActivo" class="btn btn-comenzar" (click)="IniciarJuego()">{{textoBotonJuego}}</button>
+</div>

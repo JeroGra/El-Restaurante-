@@ -1,0 +1,326 @@
+ion-toolbar{
+    --background:#8AC926;
+}
+
+#div_principal{
+    width: 100%;
+    height: 150%;
+    background-color:#313131 ;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+ion-header{
+    height: 5rem;
+}
+
+ion-footer{
+    height: 7rem;
+}
+
+ion-title{
+    text-align: center;
+    color:#000000 ;
+    font-weight: bolder;
+}
+
+h3{
+    font-weight:bolder;
+    text-align: center;
+}
+
+#btn_registrar{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2rem;
+    height: 35px;
+    padding: 0%;
+    font-weight: bolder;
+    --color:#000000;
+    --background:#8AC926;
+    --border-color:#8AC926;
+    --background-activated:#313131;
+    --color-activated:#8AC926;
+    --background-activated-opacity:1;
+    --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+}
+
+#btn_ingresar{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 0.1rem;
+    margin-bottom: 0.5rem;
+    height: 35px;
+    padding: 0%;
+    font-weight: bolder;
+    --color:#8AC926;
+    --border-color:#98f700;
+    --background-activated:#313131;
+    --color-activated:#8AC926;
+    --background-activated-opacity:1;
+    --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+}
+
+ion-input{
+    margin-right: auto;
+    margin-left: auto;
+    --color:#8AC926;
+    width: 48%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    --border-width: 0.2rem;
+    --border-color:#8AC926;
+    --highlight-color-focused:#000000;
+    --placeholder-color:#8AC926;
+    font-weight: bold;
+}
+
+#img_avatar_select{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#form_input{
+    display: block;
+}
+
+.input_r{
+    float: right;
+}
+
+.input_l{
+    float: left;
+}
+
+.input{
+    float: left;
+    width: 100%;
+}
+
+#btn_select{
+    margin-top: 0.5rem;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0%;
+    font-weight: bolder;
+    --color:#000000;
+    --background:#1982C4;
+    --border-color:#1982C4;
+    --background-activated:#FFEBB3;
+    --color-activated:#1982C4;
+    --background-activated-opacity:1;
+    --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+}
+
+#img_emp{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 1rem;
+}
+
+#img_tomada{
+    width: 18%;
+    margin-left: 40%;
+    margin-top: 1rem;
+}
+
+#btn_cam{
+    margin-top: 0.3rem;
+    margin-left: 1rem;
+    width: 45%;
+}
+
+#img_qr{
+    width: 15%;
+}
+
+#btn_qr{
+    margin-top: 0.3rem;
+    margin-left: 0.5rem;
+    width: 45%;
+}
+
+ion-loading.custom-loading {
+    --background:#8AC926;
+    --spinner-color: #000000;
+    color: #000000;
+    font-weight: bolder;
+  }
+
+// Adaptado para Note 10+
+// @media (max-width: 360px) and (max-height: 760px) {
+
+//     #img-tomada{
+//         width: 18%;
+//         margin-left: 40%;
+//         margin-top: 1rem;
+//     }
+
+//     #btn_registrar{
+//         height: 35px;
+//     }
+    
+//     #btn_ingresar{
+//         height: 35px;
+//     }
+
+// }
+
+@media  (min-width:374px) and (min-height:780px){
+    ion-toolbar{
+        --background:#8AC926;
+    }
+    
+    #div_principal{
+        width: 100%;
+        height: 150%;
+        background-color:#313131 ;
+        padding-bottom: 0.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    
+    ion-header{
+        height: 5rem;
+    }
+    
+    ion-footer{
+        height: 7rem;
+    }
+    
+    ion-title{
+        text-align: center;
+        color:#000000 ;
+        font-weight: bolder;
+    }
+    
+    h3{
+        font-weight:bolder;
+        text-align: center;
+    }
+    
+    #btn_registrar{
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 2rem;
+        height: 50px;
+        padding: 0%;
+        font-weight: bolder;
+        --color:#000000;
+        --background:#8AC926;
+        --border-color:#8AC926;
+        --background-activated:#313131;
+        --color-activated:#8AC926;
+        --background-activated-opacity:1;
+        --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+    }
+    
+    #btn_ingresar{
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 0.1rem;
+        margin-bottom: 0.5rem;
+        height: 50px;
+        padding: 0%;
+        font-weight: bolder;
+        --color:#8AC926;
+        --border-color:#98f700;
+        --background-activated:#313131;
+        --color-activated:#8AC926;
+        --background-activated-opacity:1;
+        --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+    }
+    
+    ion-input{
+        margin-right: auto;
+        margin-left: auto;
+        --color:#8AC926;
+        width: 48%;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        --border-width: 0.2rem;
+        --border-color:#8AC926;
+        --highlight-color-focused:#000000;
+        --placeholder-color:#8AC926;
+        font-weight: bold;
+    }
+    
+    #img_avatar_select{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    #form_input{
+        display: block;
+    }
+    
+    .input_r{
+        float: right;
+    }
+    
+    .input_l{
+        float: left;
+    }
+    
+    .input{
+        float: left;
+        width: 100%;
+    }
+    
+    #btn_select{
+        margin-top: 0.5rem;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        padding: 0%;
+        font-weight: bolder;
+        --color:#000000;
+        --background:#1982C4;
+        --border-color:#1982C4;
+        --background-activated:#FFEBB3;
+        --color-activated:#1982C4;
+        --background-activated-opacity:1;
+        --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+    }
+    
+    #img_emp{
+        width: 30%;
+        margin-left: 35%;
+        margin-top: 1rem;
+    }
+    
+    #img_tomada{
+        width: 30%;
+        margin-left: 35%;
+        margin-top: 1rem;
+    }
+    
+    #btn_cam{
+        margin-top: 0.3rem;
+        margin-left: 1rem;
+        width: 45%;
+    }
+    
+    #img_qr{
+        width: 15%;
+    }
+    
+    #btn_qr{
+        margin-top: 0.3rem;
+        margin-left: 0.5rem;
+        width: 45%;
+    }
+    
+    ion-loading.custom-loading {
+        --background:#8AC926;
+        --spinner-color: #000000;
+        color: #000000;
+        font-weight: bolder;
+      }
+}

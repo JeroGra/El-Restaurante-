@@ -1,0 +1,108 @@
+<ion-menu menuType="overlay" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Usuarios</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-chip (click)="Propietario()">
+      <ion-avatar>
+        <img src="../../assets/imagenes/propietario.png" />
+      </ion-avatar>
+      <h3>Propietario</h3>
+    </ion-chip>
+    <ion-chip (click)="Supervisor()">
+      <ion-avatar>
+        <img src="../../assets/imagenes/supervisor.png" />
+      </ion-avatar>
+      <h3>Supervisor</h3>
+    </ion-chip>
+    <ion-chip (click)="Metre()">
+      <ion-avatar>
+        <img src="../../assets/imagenes/empleado.png" />
+      </ion-avatar>
+      <h3>Metre</h3>
+    </ion-chip>
+    <ion-chip (click)="Mozo()">
+      <ion-avatar>
+        <img src="../../assets/imagenes/mozo.png" />
+      </ion-avatar>
+      <h3>Mozo</h3>
+    </ion-chip>
+    <ion-chip (click)="Cocinero()">
+      <ion-avatar>
+        <img src="../../assets/imagenes/cocinero.png" />
+      </ion-avatar>
+      <h3>Cocinero</h3>
+    </ion-chip>
+    <ion-chip (click)="Bartender()">
+      <ion-avatar>
+        <img src="../../assets/imagenes/bartender.png" />
+      </ion-avatar>
+      <h3>Bartender</h3>
+    </ion-chip>
+   <!-- <ion-chip (click)="Cliente()">
+      <ion-avatar >
+        <img src="../../assets/imagenes/cliente.png" />
+      </ion-avatar>
+      <h3>Cliente</h3> 
+    </ion-chip> -->
+    <ion-chip (click)="Anonimo()">
+      <ion-avatar >
+        <img src="../../assets/imagenes/anonimo.png" />
+      </ion-avatar>
+      <h3>Anonimo</h3>
+    </ion-chip>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button style="color: black;"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu de Usuarios</ion-title>
+      <ion-progress-bar *ngIf="barraCarga" type="indeterminate" color="success"></ion-progress-bar>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="div_principal">
+ 
+    <ion-img id="img_avatar_select" *ngIf="!barraCarga" src="{{imgUsuarioSelecionado}}"></ion-img>
+    <ion-loading  spinner="lines" class="custom-loading" trigger="btn_ingresar" message="Verificando..." [duration]="1000"></ion-loading>
+  
+      <ion-input *ngIf="!barraCarga"
+      label="Correo" 
+      label-placement="stacked" 
+      fill="clear" 
+      placeholder="Ingrese correo"
+      type="email"
+      helperText="Ingrese un correo valido"
+      errorText="Correo invalido"
+      maxlength="25"
+      required="true"
+      inputmode="email"
+      name="correo"
+      [(ngModel)]="correo"
+      ></ion-input>
+  
+      <ion-input *ngIf="!barraCarga"
+      label="Clave" 
+      label-placement="stacked" 
+      fill="clear" 
+      placeholder="Ingrese clave"
+      type="password"
+      helperText="Ingrese una clave valida"
+      errorText="Clave invalida"
+      minlength="6"
+      maxlength="15"
+      required="true"
+      name="clave"
+      [(ngModel)]="clave"
+      ></ion-input>
+  
+      <ion-button  *ngIf="!barraCarga"  (click)="logIn()"  size="large" fill="solid"  expand="block" id="btn_ingresar">Ingresar</ion-button>
+      <ion-button  *ngIf="!barraCarga"  (click)="resetAvatar()"  size="large" fill="outline"  expand="block" id="btn_borrar">Borrar Campos</ion-button>
+      <ion-button  *ngIf="!barraCarga"  (click)="Registrar()" size="large" fill="outline"  expand="block" id="btn_registrar">Registrar</ion-button>
+  </div>
+</div>

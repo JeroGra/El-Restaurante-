@@ -1,0 +1,154 @@
+.titulo {
+    text-align: center;
+    color: aquamarine;
+    text-shadow: 2px 2px 2px black;
+    font-weight: bold;
+    width: max-content;
+    font-size: 50px;
+    display: block;
+    margin: 0 auto;
+    padding: 5px 15px;
+    margin-bottom: 1rem;
+    border-radius: 45px;
+}
+
+.btn-comenzar {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px #000000;
+    transition: all 0.3s ease 0s;
+    outline: none;
+    display: block;
+    margin: 1rem auto;
+    margin-top: 3rem;
+}
+
+.btn-comenzar:hover {
+    background-color: #000000;
+    box-shadow: 0px 15px 20px #043624;
+    color: aquamarine;
+    transform: translateY(-7px);
+}
+
+.btn-comenzar {
+    transform: translateY(-1px);
+}
+
+.operacion-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+p {
+    color: aliceblue;
+    font-weight: bolder;
+    font-size: 6rem;
+}
+
+.opciones-container {
+    margin-top: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Espaciado entre botones horizontal */
+}
+
+.puntuacion-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-align: center;
+    span {
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        font-weight: bolder;
+        color: aquamarine;
+        text-shadow: 2px 2px 2px black;
+    }
+}
+
+ion-fab-button{
+    --background:red;
+}
+
+.btn-opcion {
+    width: calc(50% - 10px);
+    padding: 1.3em 3em;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: aquamarine;
+    background-color: black;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    margin: 1rem auto;
+}
+
+.btn-opcion:hover {
+    background-color: #1394b4;
+    box-shadow: 0px 15px 20px rgba(0, 255, 242, 0.4);
+    color: #fff;
+    text-shadow: 1px 1px 2px black;
+    transform: translateY(-7px);
+}
+
+.btn-opcion:active {
+    transform: translateY(-2px);
+}
+
+.correcta:hover {
+    background-color: #33ff00;
+    box-shadow: 0px 15px 20px rgba(81, 255, 0, 0.4);
+    color: #fff;
+    text-shadow: 1px 1px 2px black;
+    transform: translateY(-7px);
+}
+
+.incorrecta:hover {
+    background-color: #ff0000;
+    box-shadow: 0px 15px 20px rgba(255, 51, 0, 0.4);
+    color: #fff;
+    text-shadow: 1px 1px 2px black;
+    transform: translateY(-7px);
+}
+
+.juego-terminado {
+    text-align: center;
+    font-size: 5rem;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    font-weight: bold;
+  }
+  
+  .victoria {
+    color: #33ff00;
+  }
+  
+  .derrota {
+    color: #ff0000;
+  }
+
+.img-victoria{
+    width: 18rem;
+    height: 18rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-derrota{
+    width: 21rem;
+    height: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+}

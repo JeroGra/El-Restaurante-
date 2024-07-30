@@ -1,0 +1,147 @@
+ion-menu::part(backdrop){
+    background-color: rgba(138, 201, 38, 0.8);
+}
+  
+ion-menu::part(container){
+    border-radius: 0 2rem 2rem 0;
+    box-shadow: 0.4rem 0rem 1.6rem rgba(138, 201, 38, 0.18);
+}
+
+ion-toolbar{
+    --background:#8AC926;
+}
+
+#div_principal{
+    width: 100%;
+    height: 150%;
+    background-color:#313131 ;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+ion-header{
+    height: 5rem;
+}
+
+ion-title{
+    text-align: center;
+    margin-right: 10%;
+    color:#000000 ;
+    font-weight: bolder;
+}
+
+ion-chip{
+    width: 100%;
+    height: 5rem;
+    margin-bottom: 1rem;
+    background-color: #8AC926;
+    color: #000000;
+    margin-top: 1rem;
+}
+
+ion-chip:active{
+    transform: scale(0.8);
+}
+
+ion-avatar{
+    width: 4rem;
+    height: 4rem;
+    margin-right: 2rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+h3{
+    font-weight:bolder;
+    text-align: center;
+}
+
+#btn_ingresar{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0%;
+    font-weight: bolder;
+    --color:#000000;
+    --background:#8AC926;
+    --border-color:#8AC926;
+    --background-activated:#313131;
+    --color-activated:#8AC926;
+    --background-activated-opacity:1;
+    --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+}
+
+#btn_borrar{
+    --border-color:#8AC926;
+    --color-activated:#313131;
+    --background-activated:#8AC926;
+    margin-bottom: 0.5rem;
+    font-weight: bolder;
+    --color:#95ee05;
+    --background-activated-opacity:1;
+    --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+}
+
+#btn_registrar{
+    --border-color:#8AC926;
+    --color-activated:#313131;
+    --background-activated:#8AC926;
+    font-weight: bolder;
+    --color:#95ee05;
+    --background-activated-opacity:1;
+    --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+}
+
+ion-input{
+    margin-right: auto;
+    margin-left: auto;
+    --color:#95ee05;
+    width: 100%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    --border-width: 0.2rem;
+    --border-color:#8AC926;
+    --highlight-color-focused:#000000;
+    --placeholder-color:#8AC926;
+    font-weight: bold;
+}
+
+ion-loading.custom-loading {
+    --background:#8AC926;
+    --spinner-color: #000000;
+    color: #000000;
+    font-weight: bolder;
+  }
+
+#img_avatar_select{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+// Adaptado para Note 10+
+@media screen and (max-width: 385px) and (max-height: 700px) {
+
+    ion-header{
+        height: 3.3rem;
+    }
+
+    #img_avatar_select{
+        width: 75%;
+    }
+
+    ion-chip{
+        height: 3.3rem;
+    }
+
+    ion-avatar{
+        width: 3rem;
+        height: 3rem;
+    }
+
+}

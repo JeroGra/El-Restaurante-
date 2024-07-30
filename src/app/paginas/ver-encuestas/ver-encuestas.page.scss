@@ -1,0 +1,109 @@
+
+#div_principal{
+width: 100%;
+height: 100%;
+
+padding-bottom: 0.5rem;
+padding-left: 0.5rem;
+padding-right: 0.5rem;
+}
+
+#btn_h{
+    margin-top: 0.3rem;
+    width: 18.8%;
+    height: 60px;
+    --background:#8AC926;
+    --background-activated:#476615;
+}
+
+#btn_h:active{
+    transform: scale(0.8);
+}
+
+#img_h{
+    width: 100%
+}
+
+ion-footer{
+    height: 70px;
+}
+
+.card-grafico{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+  
+    text-align: center;
+    font-weight: bolder;
+    font-size: larger;
+    color: black;
+}
+
+.card-atencion{
+    background-color: rgb(199, 255, 152);
+}
+
+.card-volverias{
+    background-color: rgb(152, 255, 157);
+}
+
+.card-comida{
+    color: rgb(142, 255, 49);
+    background-color: rgb(143, 143, 143);
+}
+
+.card-puntuacionApp{
+    margin-top: 150px;
+    color: rgb(255, 200, 49);
+    background-color: rgb(63, 63, 63);
+}
+
+.card-encuesta{
+    width: 99%;
+    background-color: #74a12a;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.card-title{
+    color: #000;
+    font-weight: bold;
+}
+
+ion-chip{
+    width: 97%;
+    height: 5rem;
+    margin-bottom: 1rem;
+    background-color: #8AC926;
+    color: #000000;
+    margin-top: 1rem;
+}
+
+ion-chip:active{
+    transform: scale(0.8);
+}
+
+ion-avatar{
+    width: 4rem;
+    height: 4rem;
+    margin-right: 2rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+h3{
+    font-weight:bolder;
+    text-align: center;
+}
+
+.img-enc {
+    width: 100px;
+    height: 90px;
+    margin: 0.2rem;
+    border-radius: 20px;
+}
+// Adaptado para Note 10+
+@media (max-width: 350px) and (max-height: 678px) {
+
+}

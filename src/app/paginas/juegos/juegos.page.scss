@@ -1,0 +1,59 @@
+#div_principal{
+    width: 100%;
+    height: 100%;
+    background-color:#2c2c2d;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .contenedor{
+    display: flex;
+    flex-direction: column;
+    margin-top: 4.7rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contenedor-juegos{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn_h{
+    margin-top: 0.3rem;
+    width: 93%;
+    // height: 115px;
+    height: 89px;
+    margin-left: auto;
+    margin-right: auto;
+    --background:#8AC926;
+    --background-activated:#476615;
+}
+
+#btn_h:active{
+    transform: scale(0.8);
+}
+
+.imagen-juegos{
+    // width: 100px;
+    width: 72px;
+}
+
+label{
+    text-align: center;
+}
+
+.card{
+    background-color: #8AC926;
+    font-weight: bolder;
+    font-size: large;
+}
+
+.card-body{
+    background-color:#2c2c2d;
+    color: #8AC926;
+    font-weight: bolder;
+    font-size: large;
+}

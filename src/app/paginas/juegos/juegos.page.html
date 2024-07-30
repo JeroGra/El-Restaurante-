@@ -1,0 +1,38 @@
+<div id="div_principal">
+  <div class="contenedor" *ngIf="mostrarJuegos">
+     <div class="card">
+        <div class="card-header">
+          <p style="font-size: large;margin-top: 5px;text-align: center;">¡Seleccione el juego que desea jugar!</p>
+        </div>
+        <div class="card-body">
+            <p style="text-align: center;">Si gana a la primera, se le aplicará el descuento correspondiente</p>
+            <div class="contenedor-juegos">
+              <label for="j10">Juego 10% de descuento</label>
+              <ion-button  fill="fill" class="btn_h" id="j10" (click)="Jugar10Descuento()">
+                <img src="../../../assets/imagenes/pattern.png" class="imagen-juegos">
+              </ion-button>
+              <label for="j15">Juego 15% de descuento</label>
+              <ion-button  fill="fill" class="btn_h" id="j15" (click)="Jugar15Descuento()">
+                <img src="../../../assets/imagenes/juego_15.png" class="imagen-juegos">
+              </ion-button>
+              <label for="j20">Juego 20% de descuento</label>
+              <ion-button  fill="fill" class="btn_h" id="j20" (click)="Jugar20Descuento()">
+                <img src="../../../assets/imagenes/juego_20.png" class="imagen-juegos">
+              </ion-button>
+            </div>
+        </div>
+        <div class="card-footer">
+          <h3 style="text-align: center;"> Descuento Obtenido: {{descuentoTotal}}%</h3>
+        </div>
+     </div>
+  </div>
+  <div *ngIf="mostrarJuego10">
+    <app-juego-10-desc [descuento]="Desc10Aplicado" (cerrarJuego)="CerrarJuego($event)" (sumarDescuento)="AgregarDescuento($event)" (finalizoJuego)="YaJugo($event)"></app-juego-10-desc>
+  </div>
+  <div *ngIf="mostrarJuego15">
+    <app-juego-15-desc [descuento]="Desc15Aplicado" (cerrarJuego)="CerrarJuego($event)" (sumarDescuento)="AgregarDescuento($event)" (finalizoJuego)="YaJugo($event)"></app-juego-15-desc>
+  </div>
+  <div *ngIf="mostrarJuego20">
+    <app-memoria [descuento]="Desc20Aplicado" (cerrarJuego)="CerrarJuego($event)" (sumarDescuento)="AgregarDescuento($event)" (finalizoJuego)="YaJugo($event)"></app-memoria>
+  </div>
+</div>

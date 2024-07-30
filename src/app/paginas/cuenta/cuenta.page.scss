@@ -1,0 +1,120 @@
+ion-content{
+    --background:#313131;
+}
+
+.div-principal{
+    width: 100%;
+    height: 100%;
+    background-color:#313131 ;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.contenedor-pedido{
+    margin-top: 5rem;
+    width: 100%;
+    padding: 0% 3% 2% 3%;
+    background-color: #8AC926;
+    border: inset 4px blanchedalmond;
+    border-radius: 8px;
+    font-family: "Lato", sans-serif;
+}
+
+ion-spinner{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    color: black;
+  }
+
+.table{
+    --bs-table-bg:#CABAC8;
+    --bs-table-border-color: black;
+    td{
+        color: black;
+    }
+}
+
+.boton-fab{
+    --background:rgb(191 120 255);
+    --background-activated:rgb(84, 63, 104);
+    width: 4rem;
+    height: 4rem;
+    margin-top: 56px;
+  }
+
+.contenedor-mensaje{
+    display: flex;
+    flex-direction: row;
+    font-size: 21px;
+    background-color: #799f52;
+}
+
+#btn_ingresar{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0%;
+    font-weight: bolder;
+    --color:#000000;
+    --background:#8AC926;
+    --border-color:#8AC926;
+    --background-activated:#313131;
+    --color-activated:#8AC926;
+    --background-activated-opacity:1;
+    --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+}
+
+#btn_borrar{
+    --border-color:#8AC926;
+    --color-activated:#313131;
+    --background-activated:#8AC926;
+    margin-bottom: 0.5rem;
+    font-weight: bolder;
+    --color:#95ee05;
+    --background-activated-opacity:1;
+    --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+}
+
+#img_qr{
+    width: 15%;
+  }
+  
+  #btn_qr{
+    margin-top: 0.3rem;
+    width: 99%;
+  }
+
+  .contenedor-propina{
+    margin-top: 8rem;
+  }
+
+
+
+.card-propina{
+    background-color: #799f52;
+    border: 2px inset blanchedalmond;
+}
+
+.card-header-propina{
+    background-color: #a4f94d;
+}
+
+.card-body-propina{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2%;
+}
+
+.btn-propina{
+    font-size: 20px;
+    border: 3px inset black;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 20px;
+    width: 50%;
+    background-color: #a4f94d;
+}

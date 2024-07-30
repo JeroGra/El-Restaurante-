@@ -1,0 +1,49 @@
+<ion-content *ngIf="!qr.scan">
+  <div class="div-principal">
+  <div class="contenedor-pedido" *ngIf="mostrarCuenta && !qr.scan">
+    <table class="table table-bordered caption-top" style="color: #ffffff;">
+      <caption style="color: white; font-size: 20px;">CUENTA
+        <ion-icon name="newspaper"></ion-icon>
+      </caption>
+      <thead>
+        <tr>
+          <th>PRODUCTO</th>
+          <th>CANTIDAD</th>
+          <th>PRECIO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let producto of AgruparProductos(pedido.productos)">
+          <tr>
+            <td>{{producto.nombre}}</td>
+            <td *ngIf="producto.cantidad > 1">{{producto.cantidad}}</td>
+            <td *ngIf="producto.cantidad === 1">1</td>
+            <td>${{producto.precio * producto.cantidad}}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;"><b>SUBTOTAL:</b> ${{pedido.total}}</td>
+        </tr>
+        <tr>
+          <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;"><b>DESCUENTO JUEGOS:</b> ${{descuentosJuegos}}</td>
+        </tr>
+        <tr>
+          <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;"><b>PROPINA:</b> ${{pedido.propina}}</td>
+        </tr>
+        <tr>
+          <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;"><b>TOTAL:</b> ${{totalFinal}}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div *ngIf="pedido.estado === 'pendiente-pago'" >
+      <ion-spinner name="crescent"></ion-spinner>
+      <p style="text-align: center;font-size: large;color: black;font-weight: bold;">Su pago está siendo validado</p>
+    </div>
+  </div>
+  <ion-button *ngIf="!propinaCargada && !qr.scan" (click)="ScanPropina()"  size="large" fill="solid"  expand="block" id="btn_ingresar">Agregar Propina</ion-button>
+  <ion-button *ngIf="mostrarCuenta && !qr.scan && !(pedido.estado === 'pendiente-pago')" (click)="ScanPropina()"  size="large" fill="outline"  expand="block" id="btn_borrar">Pagar con QR</ion-button>
+  <ion-button *ngIf="mostrarCuenta && !qr.scan && !(pedido.estado === 'pendiente-pago')" (click)="Pagar()"  size="large" fill="outline"  expand="block" id="btn_borrar">Pagar Efectivo</ion-button>
+  </div>
+</ion-content>

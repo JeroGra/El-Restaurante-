@@ -1,0 +1,78 @@
+<div>
+  <ion-fab slot="fixed" vertical="top" horizontal="end" style="margin-top: 45px;">
+    <ion-fab-button size="small" (click)="TomarFoto()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="contenedor" style="font-family: 'Lato',sans-serif;">
+    <ion-card>
+      <ion-card-title class="ion-text-center mt-2">Encuesta de Cliente</ion-card-title>
+      <ion-card-content>
+        <form [formGroup]="forma" (ngSubmit)="EnviarEncuesta()">
+          <ion-card-subtitle class="ion-text-center">¿Cómo calificaría el servicio de atención?</ion-card-subtitle>
+          <ion-range aria-label="Range with ticks" [pin]="true" formControlName="atencion" [pinFormatter]="formato"></ion-range>
+          <ion-card-subtitle class="ion-text-center mb-1">¿Volvería al restaurante con un amigo?</ion-card-subtitle>
+          <div class="radioButtons mb-3" style="text-align: center; margin: 0 auto;">
+            <div class="form-check">
+              <input value="1"  type="radio" class="form-check-input" name="volverias" formControlName="volverias">
+              <label class="form-check-label">Si</label>
+            </div>
+            <div class="form-check">
+              <input value="0" type="radio" class="form-check-input " name="volverias" formControlName="volverias">
+              <label class="form-check-label">No</label>
+            </div>
+          </div>
+          <ion-card-subtitle class="ion-text-center mb-1">¿Cómo fue la calidad de la comida?</ion-card-subtitle>
+          <div class="checkboxes mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="flexCheckDefault" [checked]="valorCheckBox === 'Mala'" (change)="onCheckboxChange('Mala')">
+              <label class="form-check-label" for="flexCheckDefault">
+                Mala
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="flexCheckChecked" [checked]="valorCheckBox === 'Buena'" (change)="onCheckboxChange('Buena')">
+              <label class="form-check-label" for="flexCheckChecked">
+                Buena
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="flexCheckChecked" [checked]="valorCheckBox === 'Excelente'" (change)="onCheckboxChange('Excelente')">
+              <label class="form-check-label" for="flexCheckChecked">
+                Excelente
+              </label>
+            </div>
+          </div>
+          <ion-card-subtitle class="ion-text-center mb-2">¿Cómo calificaría la aplicación?</ion-card-subtitle>
+          <div class="select">
+            <select class="form-select form-select-sm mb-2" formControlName="puntuacion_app">
+              <option value="" disabled selected>Seleccione una opción</option>
+              <option value="⭐">⭐</option>
+              <option value="⭐⭐">⭐⭐</option>
+              <option value="⭐⭐⭐">⭐⭐⭐</option>
+              <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+              <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+            </select>
+          </div>
+          <ion-card-subtitle class="ion-text-center mb-2">Puede subir hasta 3 fotos</ion-card-subtitle>
+          <p class="mb-2" style="text-align: center; margin: 0 auto; color: #fff">Se han subido {{cantImagenes}} de 3 <ion-icon name="images"></ion-icon></p>
+          <div class="contenedor-fotos-tomadas">
+            <ion-avatar *ngFor="let foto of fotosTomadas" class="foto-tomada">
+              <img [src]="foto" />
+            </ion-avatar>
+          </div>
+          <textarea class="form-control textarea mb-4" placeholder="Escriba un comentario adicional..." formControlName="comentario"></textarea>
+          <div class="btn-submit d-grid ">
+            <button type="submit" class="btn btn-lg">Enviar Encuesta</button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</div>
+
+<!-- ******************************* SPINNER *******************************-->
+<div *ngIf="loading" class="custom-spinner">
+  <h1 class="spinnerh1">Cargando...</h1>
+  <img src="../../../assets/icon/empresa.png" alt="Custom Spinner" />
+</div>

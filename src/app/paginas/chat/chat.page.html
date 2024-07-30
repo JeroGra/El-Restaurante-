@@ -1,0 +1,44 @@
+<ion-content>
+  <div class="contenedor-principal">
+    <div class="container">
+      <div class="fondo" id="fondo">
+        <div *ngFor="let mensaje of chat" class="mensajes">
+          <div *ngIf="usuarioActual.uid == mensaje.uid">
+              <div class="card_mensaje derecha" >
+                  <p><b style="color: #EDFFEC;font-weight: 100">{{mensaje.texto}}</b></p>
+                  <div>
+                    <span class="timestamp">&bull;<span class="posttime">{{mensaje.fecha}}</span></span>
+                  </div>
+              </div>
+          </div>
+          <div *ngIf="!(usuarioActual.uid === mensaje.uid)">
+              <div class="card_mensaje izquierda" >
+                <h3 class="autor_nombre ">{{mensaje.nombre}}</h3>
+    
+                  <p><b style="color: #EDFFEC;font-weight: 100">{{mensaje.texto}}</b></p>
+                  <div>
+                    <span class="timestamp">&bull;<span class="posttime">{{mensaje.fecha}}</span></span>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="new-background-color">
+      <ion-input slot="start" placeholder="Escribe algo..." [(ngModel)]="mensaje" style="color: white;"></ion-input>    
+      <ion-buttons slot="end">
+      <ion-button size="large" class="boton_enviar" (click)="EnviarMensaje()">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+
+  <!-- ******************************* SPINNER *******************************-->
+  <div *ngIf="loading" class="custom-spinner">
+    <h1 class="spinnerh1">Cargando...</h1>
+    <img src="../../../assets/icon/empresa.png" alt="Custom Spinner" />
+  </div>

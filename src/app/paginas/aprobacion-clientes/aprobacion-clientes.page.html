@@ -1,0 +1,59 @@
+
+
+<div id="div_principal">
+
+  <div class="card text-center" style="margin-left: 1rem;margin-top: 3.5rem;border: #000000 solid 1px;">
+
+    <div class="card-header" style="background-color: #873ffc;">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a (click)="ClientesPendientes()" class="nav-link " [ngClass]="(clientes_pendientes === false)? '':'activado'"><img width="25" src="../../../assets/imagenes/person-fill-dash.svg"></a>
+        </li>
+        <li class="nav-item">
+          <a (click)="ClientesDenegados()" class="nav-link" [ngClass]="(clientes_denegados === false)? '':'activado'"><img width="25" src="../../../assets/imagenes/person-fill-x.svg"></a>
+        </li>
+        <li class="nav-item">
+          <a (click)="ClientesAprobados()" class="nav-link" [ngClass]="(clientes_aceptados === false)? '':'activado'"><img width="25" src="../../../assets/imagenes/person-fill-check.svg"></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-body" style="margin-bottom: 0px;background-color: #8AC926;">
+      <h5 class="card-title">{{estado_clientes}}</h5>
+
+      <!--/////////////////////////////// LISTA //////////////////////////////// -->
+      <div  class="div-lista">
+        <ion-list *ngFor="let cliente of list; let index">
+          
+          <ion-item (click)="SelectCli(cliente)" class="item-cli">
+            <ion-thumbnail slot="start">
+              <img  *ngIf="cliente.imagen !== null" alt="Silhouette of mountains" [src]="cliente.imagen.path" />
+            </ion-thumbnail>
+            <ion-label>{{cliente.nombre}}</ion-label>
+            <ion-label>{{cliente.apellido}}</ion-label>
+          </ion-item>
+    
+
+        </ion-list>
+      </div>
+
+      <div class="card card-usuario" *ngIf="cliente.uid !== '' ">
+        <ion-avatar style="margin-left: auto;margin-right: auto;margin-top: 0.5rem;">
+          <img id="img-cli-select" *ngIf="cliente.imagen !== null" alt="Silhouette of a person's head" [src]="cliente.imagen.path" />
+        </ion-avatar>
+        <div class="card-body card-body-cli">
+          <h5 class="card-title">{{cliente.nombre}} {{cliente.apellido}}</h5>
+          <p class="card-text">DNI: {{cliente.dni}}</p>
+        </div>
+        <div class="btn-group btn-group-lg" role="group">
+          <button (click)="Aceptar()" type="button" id="btn-aprobado" class="btn"><img width="40" src="../../../assets/imagenes/aceptar-el-contorno-del-boton-circular.png" alt=""></button>
+          <button (click)="Rechazar()" type="button" id="btn-rechazado" class="btn"><img width="40" src="../../../assets/imagenes/acceso-denegado.png" alt=""></button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+

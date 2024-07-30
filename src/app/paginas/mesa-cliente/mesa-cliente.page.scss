@@ -1,0 +1,203 @@
+
+  #img_qr{
+    width: 15%;
+  }
+  
+  #btn_qr{
+    margin-top: 0.3rem;
+    width: 99%;
+  }
+  
+  #div_principal{
+    width: 100%;
+    height: 100%;
+    background-color:#313131 ;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .contenedor-menu{
+    margin: 19% 0% 0% 0%;
+  }
+  
+  .card_div{
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #8AC926;
+    font-size: large;
+    font-weight: bolder;
+  }
+  
+  #btn_consultar{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0%;
+    font-weight: bolder;
+    --color:#000000;
+    --background:#8AC926;
+    --border-color:#8AC926;
+    --background-activated:#313131;
+    --color-activated:#8AC926;
+    --background-activated-opacity:1;
+    --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+  }
+
+  .contenedor-estado-pedido{
+    width: 100%;
+    height: 26vh;
+    background-color: #98f700;
+    color: #000000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 8px;
+    padding: 3% 1%;
+    text-align: center;
+    margin-top: 4rem;
+    p{
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  .boton-fab{
+    --background:rgb(191 120 255);
+    --background-activated:rgb(84, 63, 104);
+    width: 80px;
+    height: 80px;
+    margin-top: 60px;
+  }
+
+  .fabs-list{
+    margin-top: 140px;
+    min-width: 84px;
+  }
+
+  .fabs-btns{
+    --background:rgb(191 120 255);
+    width: 70px;
+    height: 70px;
+    ion-icon{
+      color: #000000;
+      width: 35px;
+      height: 60px;
+    }
+  }
+
+  ion-spinner{
+    height: 70px;
+    width: 100px;
+  }
+
+  .icono-estado{
+    width: 100px;
+    height: 80px;
+  }
+  
+  #btn_encuestas{
+    --border-color:#8AC926;
+    --color-activated:#313131;
+    --background-activated:#8AC926;
+    margin-bottom: 0.5rem;
+    font-weight: bolder;
+    --color:#98f700;
+    --background-activated-opacity:1;
+    --box-shadow: 0 0.2rem 0.6rem 0 rgb(0, 0, 0, 0.25);
+  }
+  
+  .card_div img {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+  
+  h2{
+    color: #000000;
+  }
+
+  #btn_confirmar_pedido{
+    --background:rgb(191 120 255);
+    --background-activated:rgb(84, 63, 104);
+  }
+
+  #btn_confirmar_pedido:active{
+    transform: scale(0.8);
+  }
+  
+  // Adaptado para Note 10+
+  @media screen and (max-width: 385px) and (max-height: 700px) {
+
+    #btn_cancelar{
+      height: 20px;
+    }
+    
+    #btn_encuestas{
+      height: 20px;
+    } 
+    
+    .card_div img {
+      margin-top: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+
+    .contenedor-estado-pedido{
+      p{
+        font-size: 15px;
+      }
+    }
+
+    ion-icon{
+      height: 50px;
+    }
+}
+
+//SPINNER
+@keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.custom-spinner img {
+  animation: rotate-center 1s ease-in-out infinite both;
+  max-width: 200px;
+  height: 200px;
+  opacity: 1;
+}
+
+.custom-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background-color: rgba(91, 91, 91, 0.601);
+  background-repeat: no-repeat;
+  background-size: 150px;
+  background-position: center;
+}
+
+.spinnerh1 {
+  position: absolute;
+  top: 200px;
+  font-size: 40px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,77 @@
+<div id="div_principal">
+
+  <!-- CLIENTES  -->
+  <div *ngIf="!seleccionar_mesa" class="card text-center" style="margin-left: 1rem;margin-top: 3.5rem;border: #000000 solid 1px;">
+
+    <div class="card-header" style="background-color: #873ffc;">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a (click)="ClientesEnFila()" class="nav-link " [ngClass]="(clientes_fila === false)? '':'activado'"><img width="25" src="../../../assets/imagenes/person-lines-fill.svg"></a>
+        </li>
+        <li class="nav-item">
+          <a (click)="ClientesConMesa()" class="nav-link" [ngClass]="(clientes_mesa === false)? '':'activado'"><img width="25" src="../../../assets/imagenes/person-fill-check.svg"></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-body" style="margin-bottom: 0px;background-color: #8AC926;">
+      <h5 class="card-title">{{estado_clientes}}</h5>
+
+      <!--/////////////////////////////// LISTA //////////////////////////////// -->
+      <div  class="div-lista">
+        <ion-list *ngFor="let cliente of list; let index">
+          
+          <ion-item (click)="SelectCli(cliente)" class="item-cli">
+            <ion-thumbnail slot="start">
+              <img  *ngIf="cliente.imagen !== null" alt="Silhouette of mountains" [src]="cliente.imagen.path" />
+            </ion-thumbnail>
+            <ion-label>{{cliente.nombre}}</ion-label>
+            <ion-label>{{cliente.apellido}}</ion-label>
+          </ion-item>
+    
+
+        </ion-list>
+      </div>
+
+      <div class="card card-usuario" *ngIf="cliente.uid !== '' ">
+        <ion-avatar style="margin-left: auto;margin-right: auto;margin-top: 0.5rem;">
+          <img id="img-cli-select" *ngIf="cliente.imagen !== null" alt="Silhouette of a person's head" [src]="cliente.imagen.path" />
+        </ion-avatar>
+        <div class="card-body card-body-cli">
+          <h5 class="card-title">{{cliente.nombre}} {{cliente.apellido}}</h5>
+          <p class="card-text">DNI: {{cliente.dni}}</p>
+          <p *ngIf="clientes_mesa" class="card-text">Mesa: {{cliente.mesa_asignada}}</p>
+        </div>
+          <button *ngIf="clientes_fila" (click)="AsignarMesa()" type="button" id="btn-aprobado" class="btn">Asignar Mesa</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MESAS -->
+  <div *ngIf="seleccionar_mesa" class="card text-center" style="margin-left: 1rem;margin-top: 3.5rem;border: #000000 solid 1px;">
+
+    <div class="card-body" style="margin-bottom: 0px;background-color: #8AC926;">
+      <h5 class="card-title">Mesas Libres</h5>
+
+      <!--/////////////////////////////// LISTA //////////////////////////////// -->
+      <div  class="div-lista-mesa">
+        <ion-list *ngFor="let mesa of listMesa; let index">
+          
+          <ion-item  class="item-mesa">
+            <ion-thumbnail slot="start">
+              <img alt="Silhouette of mountains" [src]="mesa.imagen_qr" />
+            </ion-thumbnail>
+            <ion-label>Mesa {{mesa.numero}}</ion-label>
+            <button (click)="Asignar(mesa)"  type="button" id="btn-aprobado" class="btn"><img src="../../../assets/imagenes/indent.svg" alt=""></button>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+    
+  </div>
+
+  <button (click)="Cancelar()"  *ngIf="seleccionar_mesa" type="button" id="btn-aprobado" class="btn btn_atras">Atrás</button>
+
+</div>

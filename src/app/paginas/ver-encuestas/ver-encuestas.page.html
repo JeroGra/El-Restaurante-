@@ -1,0 +1,129 @@
+<ion-content>
+<div id="div_principal">
+
+  <div *ngIf="ver_grafico_atencion" class="card card-grafico card-atencion" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Calificación de Atención</h5>
+      <h6 class="card-subtitle mb-2">Porcentaje de calificación según nuestros clientes</h6>
+      <div id="chartAtencion">
+      <apx-chart 
+        [series]="chartOptionsAtencion!.series!"
+        [chart]="chartOptionsAtencion!.chart!"
+        [dataLabels]="chartOptionsAtencion!.dataLabels!"
+        [plotOptions]="chartOptionsAtencion!.plotOptions!"
+        [yaxis]="chartOptionsAtencion!.yaxis!"
+        [xaxis]="chartOptionsAtencion!.xaxis!"
+        [legend]="chartOptionsAtencion!.legend!"
+        [colors]="chartOptionsAtencion!.colors!"
+        [grid]="chartOptionsAtencion!.grid!"
+      ></apx-chart>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="ver_grafico_volverias" class="card card-grafico card-volverias" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">¿Volverias?</h5>
+      <h6 class="card-subtitle mb-2">Respuesta de los clientes</h6>
+      <div id="chartVolverias">
+        <apx-chart
+        [series]="chartOptionsVolverias!.series!"
+        [chart]="chartOptionsVolverias!.chart!"
+        [dataLabels]="chartOptionsVolverias!.dataLabels!"
+        [stroke]="chartOptionsVolverias!.stroke!"
+        [colors]="chartOptionsVolverias!.colors!"
+        [title]="chartOptionsVolverias!.title!"
+        [subtitle]="chartOptionsVolverias!.subtitle!"
+        [plotOptions]="chartOptionsVolverias!.plotOptions!"
+        [yaxis]="chartOptionsVolverias!.yaxis!"
+        [xaxis]="chartOptionsVolverias!.xaxis!"
+        [tooltip]="chartOptionsVolverias!.tooltip!"
+      ></apx-chart>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="ver_grafico_comida" class="card card-grafico card-comida" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title" style="color: rgb(142, 255, 49);">Calificación de la Comida</h5>
+      <h6 class="card-subtitle mb-2">Respuesta de los clientes</h6>
+      <div id="chartComida">
+        <apx-chart
+        [series]="chartOptionsComida!.series!"
+        [chart]="chartOptionsComida!.chart!"
+        [labels]="chartOptionsComida!.labels!"
+        [title]="chartOptionsComida!.title!"
+        [theme]="chartOptionsComida!.theme!"
+        [fill]="chartOptionsComida!.fill!"
+        [yaxis]="chartOptionsComida!.yaxis!"
+        [stroke]="chartOptionsComida!.stroke!"
+        [legend]="chartOptionsComida!.legend!"
+        [plotOptions]="chartOptionsComida!.plotOptions!"
+      ></apx-chart>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="ver_grafico_puntuacionApp" class="card card-grafico card-puntuacionApp">
+    <h5 class="card-title" style="color: rgb(255, 200, 49);">Puntuación de la App "El Restaurante"</h5>
+    <h6 class="card-subtitle mb-2">Respuesta de los clientes</h6>
+    <div  id="chartPuntuacionApp">
+      <apx-chart
+        [series]="chartOptionsPuntuacionApp!.series!"
+        [chart]="chartOptionsPuntuacionApp!.chart!"
+        [labels]="chartOptionsPuntuacionApp!.labels!"
+        [title]="chartOptionsPuntuacionApp!.title!"
+        [theme]="chartOptionsPuntuacionApp!.theme!"
+        [responsive]="chartOptionsPuntuacionApp!.responsive!"
+      ></apx-chart>
+    </div>
+  </div>
+
+
+  <br *ngIf="ver_comentarios_encuestas">
+  <div *ngIf="ver_comentarios_encuestas">
+    <h1></h1>
+    <div *ngFor="let item of encuestas" class="card card-encuesta">
+      <ion-chip>
+        <ion-avatar>
+          <img [src]="item.cliente.imagen.path" />
+        </ion-avatar>
+        <h3>{{item.cliente.nombre}} {{item.cliente.apeliido}}</h3>
+      </ion-chip>
+      
+    
+      <div class="card-body">
+        <h5 class="card-title">{{item.comentario}}.</h5>
+        <img *ngIf="item.fotos[0]" class="img-enc" [src]="item.fotos[0]">
+        <img *ngIf="item.fotos[1]" class="img-enc" [src]="item.fotos[1]">
+        <img *ngIf="item.fotos[2]" class="img-enc" [src]="item.fotos[2]">
+      </div>
+    </div>
+  </div>
+
+</div>
+</ion-content>
+<ion-footer [translucent]="true">
+  <ion-button  fill="fill" id="btn_h" (click)="VerEncuestas('Atencion')" >
+    <img src="../../../assets/imagenes/grafico-lineas.png"  id="img_h">
+  </ion-button>
+
+  <ion-button  fill="fill" id="btn_h"  (click)="VerEncuestas('Volverias')" >
+    <img src="../../../assets/imagenes/grafico-de-barras-horizontales-para-empresas.png"  id="img_h">
+  </ion-button>
+
+  <ion-button  fill="fill" id="btn_h"  (click)="VerEncuestas('Puntuacion')" >
+    <img src="../../../assets/imagenes/grafico-tortar.png"  id="img_h">
+  </ion-button>
+
+  <ion-button  fill="fill" id="btn_h"  (click)="VerEncuestas('Comida')" >
+    <img src="../../../assets/imagenes/carta-polar.png"  id="img_h">
+  </ion-button>
+
+  <ion-button  fill="fill" id="btn_h"   (click)="VerEncuestas('Comentario')">
+    <img src="../../../assets/imagenes/comentarios.png"  id="img_h">
+  </ion-button>
+</ion-footer>
+

@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Alta de Cliente</ion-title>
+    <ion-progress-bar *ngIf="barraCarga" type="indeterminate" color="primary"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+
+<div id="div_principal" [style.visibility]="qr.content_visibility">
+  <ion-loading  spinner="lines" class="custom-loading" trigger="btn_registrar" message="Verificando..." [duration]="ms_loading"></ion-loading>
+  <form id="form_input"  [formGroup]="forms" >
+    <ion-input errorText="*" formControlName="nombre" class="input_l" name="nombre" [(ngModel)]="nombre" fill="solid" helperText="Ingrese un nombre" >Nombre</ion-input>
+    <ion-input errorText="*" formControlName="apellido" class="input_r" name="apellido" [(ngModel)]="apellido" fill="solid" helperText="Ingrese un apellido" >Apellido</ion-input>
+    <ion-input errorText="*" formControlName="correo" class="input_l" name="correo" [(ngModel)]="correo" fill="solid" type="email" inputmode="email" helperText="Ingrese un Correo" >Correo</ion-input>
+    <ion-input errorText="*" formControlName="clave" class="input_r" name="clave" [(ngModel)]="clave" fill="solid" type="password" helperText="Ingrese un clave" >Clave</ion-input>
+    <ion-input errorText="*" formControlName="reclave" class="input_l" name="reclave" [(ngModel)]="reclave" fill="solid" type="password" helperText="Reingrese la clave" >Clave Confirmación</ion-input>
+    <ion-input errorText="*" formControlName="dni" class="input_r" name="dni" [(ngModel)]="dni" fill="solid" type="number" inputmode="number" helperText="Ingrese un dni" >DNI</ion-input>
+  </form>
+ 
+  <ion-grid style="margin-bottom: 0rem;margin-top: 0rem;" *ngIf="fotoTomada">
+      <ion-col style="margin-bottom: 0rem;margin-top: 0rem;" *ngFor="let foto of cam.fotos; index as position" >
+        <ion-img (click)="showActionSheet(foto,0)" id="img_tomada" style="margin-bottom: 0rem;" [src]="foto.webVistaRuta" ></ion-img>
+      </ion-col>
+  </ion-grid>
+  <ion-img *ngIf="!fotoTomada" id="img_emp" src="../../../assets/imagenes/cliente.png"></ion-img>
+  <ion-loading  spinner="lines" class="custom-loading" trigger="btn_registrar" message="Verificando..." [duration]="2500"></ion-loading>
+  <ion-button (click)="Registrar()" fill="solid"  expand="block" id="btn_registrar">Registrar</ion-button>
+  <ion-button (click)="LogIn()" fill="outline"  expand="block" id="btn_ingresar">Ingresar</ion-button>
+</div>
+
+<ion-footer [translucent]="true">
+  <ion-button [disabled]="fotoTomada" (click)="TomarFoto()"  fill="outline" id="btn_cam">
+    <ion-icon name="camera"></ion-icon>
+  </ion-button>
+  <ion-button   fill="outline" id="btn_qr" (click)="ScanDNI()" >
+    <img src="../../../assets/imagenes/qr.png" id="img_qr">
+  </ion-button>
+</ion-footer>

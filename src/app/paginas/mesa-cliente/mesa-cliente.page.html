@@ -1,0 +1,77 @@
+<div id="div_principal" *ngIf="!qr.scan">
+
+  <div *ngIf="mesaVinculada" class="card card_div" style="width: 18rem;padding: 0.5px;">
+    <img [src]="mesa.imagen_qr">
+    <div class="card-body">
+      <h5 class="card-title" style="text-align: center;">Mesa {{mesa.numero}}</h5></div>
+  </div>
+
+  <div *ngIf="mesaVinculada">
+    <ion-fab slot="fixed" vertical="top" horizontal="end" >
+      <ion-fab-button class="btn_selec_categoria" class="boton-fab">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="bottom" class="fabs-list">
+        <ion-fab-button class="fabs-btns" (click)="ConsultarMozo()">
+          <ion-icon name="chatbubbles"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button class="fabs-btns" *ngIf="estadoPedido === 'preparacion' || estadoPedido === 'recibido' || estadoPedido === 'cocinado'" (click)="NavegarListadoJuegos()">
+          <ion-icon name="game-controller"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button class="fabs-btns" *ngIf="(estadoPedido === 'preparacion' || estadoPedido === 'recibido' || estadoPedido === 'cocinado') && !realizoEncuesta" (click)="MostrarEncuesta()">
+          <ion-icon name="create"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button class="fabs-btns" *ngIf="estadoPedido === 'recibido'" (click)="PedirCuenta()">
+          <ion-icon name="card"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+
+    <div class="contenedor-estado-pedido" *ngIf="qrEscaneado">
+      <div *ngIf="noRealizoPedido">
+        <p>Haga su pedido escaneando el QR de su mesa</p>
+        <ion-icon name="qr-code" class="icono-estado"></ion-icon>
+      </div>
+      <div *ngIf="estadoPedido === 'revision'">
+        <p>Su pedido está en proceso de revisión</p>
+        <ion-icon name="alert-circle" class="icono-estado"></ion-icon>
+      </div>
+      <div *ngIf="estadoPedido === 'preparacion'">
+        <p>Su pedido está siendo preparado. <br>Tiene un tiempo estimado de {{pedido.tiempoPreparacion}} minutos</p>
+        <ion-spinner></ion-spinner>
+      </div>
+      <div *ngIf="estadoPedido === 'cocinado'">
+        <p>¡Su pedido está listo!. En un momento se lo llevaremos</p>
+        <ion-button (click)="PedidoRecibido()" id="btn_confirmar_pedido">
+          <ion-icon name="notifications" class="icono-estado"></ion-icon>
+        </ion-button>
+      </div>
+      <div *ngIf="estadoPedido === 'recibido'">
+        <p>¡Disfrute de la comida!</p>
+        <ion-icon name="restaurant" class="icono-estado"></ion-icon>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="mostrarEncuesta">
+    <app-encuesta-cliente (encuestaCompletada)="EncuestaCompletada($event)" [pedidoRecibido]="pedido"></app-encuesta-cliente>
+  </div>
+
+  <div *ngIf="listadoProductos" class="contenedor-menu">
+    <app-listado-productos [productos]="productos" [numeroMesa]="mesa.numero" (pedidoFinalizado)="PedidoCargado($event)"></app-listado-productos>
+  </div>
+
+</div>
+
+<!-- ******************************* SPINNER *******************************-->
+<div *ngIf="loading" class="custom-spinner">
+  <h1 class="spinnerh1">Cargando...</h1>
+  <img src="../../assets/icon/empresa.png" alt="Custom Spinner" />
+</div>
+
+<ion-footer *ngIf="cliente.perfil === 'Cliente' && !listadoProductos && !mostrarEncuesta" [translucent]="true">
+  <ion-button  (click)="ScanMesa()"  fill="outline" id="btn_qr"  >
+    <img src="../../../assets/imagenes/qr.png"  id="img_qr">
+  </ion-button>
+</ion-footer>
+

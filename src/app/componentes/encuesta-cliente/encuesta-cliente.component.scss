@@ -1,0 +1,117 @@
+ion-card-title{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.contenedor{
+    height: 100%;
+    width: 100%;
+    margin-top: 4rem;
+}
+
+.radioButtons{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.checkboxes{
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block; 
+    label{
+        margin-left: 30%;
+    }
+}
+
+.select{
+    width: 70%;
+    text-align: center; 
+    margin: 0 auto; 
+    display: block;
+}
+
+.textarea{
+    padding: 1%;
+}
+
+.contenedor-fotos-tomadas{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 7px;
+}
+
+.foto-tomada{
+    width: 50px;
+    height: 50px;
+    border: 2px inset white;
+}
+
+ion-fab-button{
+  --background:#8ac926;
+  height: 60px;
+  width: 60px;
+}
+
+ion-range{
+  --bar-background:#537718;
+  --bar-background-active:#a1f717;
+  --knob-size:30px;
+  --knob-background:#a1f717;
+  --pin-background:#8ac926;
+}
+
+.btn{
+  background-color:#8ac926;
+  color: black;
+}
+
+.btn:active{
+  transform: scale(0.8);
+}
+
+@keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+      transform: rotate(0);
+    }
+  
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  .custom-spinner img {
+    animation: rotate-center 1s ease-in-out infinite both;
+    max-width: 200px;
+    height: 200px;
+    opacity: 1;
+  }
+  
+  .custom-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color: rgba(91, 91, 91, 0.601);
+    background-repeat: no-repeat;
+    background-size: 150px;
+    background-position: center;
+  }
+  
+  .spinnerh1 {
+    position: absolute;
+    top: 200px;
+    font-size: 40px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }

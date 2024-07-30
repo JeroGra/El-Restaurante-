@@ -1,0 +1,47 @@
+<div id="div_principal">
+
+  <div class="card text-center" style="margin-left: 1rem;margin-top: 3.5rem;border: #000000 solid 1px; min-height: 50rem;">
+
+    <div class="card-header" style="background-color: #873ffc;">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a (click)="PedidosPendientes()" class="nav-link " [ngClass]="(pedidos_preparacion === false)? '':'activado'"><img width="25" src="../../../assets/imagenes/reloj.svg"></a>
+        </li>        
+        <li class="nav-item">
+          <a (click)="PedidosTerminados()" class="nav-link" [ngClass]="(pedidos_terminados === false)? '':'activado'"><img width="25" src="../../../assets/imagenes/cocinado.svg"></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-body" style="margin-bottom: 0px;background-color: #8AC926;">
+      <h5 class="card-title">{{estado_pedidos}}</h5>
+
+      <!--/////////////////////////////// LISTA //////////////////////////////// -->
+      <div  class="div-lista">
+          <ion-list *ngFor="let pedido of list; let index">
+          
+            <ion-item (click)="SelectPed(pedido)" class="item-cli">
+              <ion-label>Orden de la mesa {{pedido.mesa}}</ion-label>            
+            </ion-item>
+          </ion-list>
+      </div>
+
+      <div class="card card-usuario" *ngIf="pedido.uid !== '' ">
+        <div class="card-body card-body-cli">
+          <h5 class="card-title">Mesa {{pedido.mesa}}</h5>
+          <div class="listado-productos">
+            <ion-item *ngFor="let producto of AgruparProductos(pedido.productos); let index" (click)="SelectPed(pedido)" class="item-cli">
+              <ion-label>{{producto.nombre}} x {{producto.cantidad}}</ion-label>            
+            </ion-item>
+          </div>
+        </div>
+        <div class="btn-group btn-group-lg" role="group">
+          <button *ngIf="!pedido.cocinaOk" (click)="Listo()" type="button" id="btn-aprobado" class="btn"><img width="40" src="../../../assets/imagenes/aceptar-el-contorno-del-boton-circular.png" alt=""></button>          
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
