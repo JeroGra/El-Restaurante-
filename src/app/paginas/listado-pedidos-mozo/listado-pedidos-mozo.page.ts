@@ -153,8 +153,8 @@ export class ListadoPedidosMozoPage {
   AprobarPago(pedido:any)
   {
     this.bdSrv.ModificarEstadoPedido(pedido,"finalizado")
-    this.bdSrv.TraerUnaMesaPorNumero(pedido.mesa).then((m:Mesa)=>{
-      let mesa = m
+    this.bdSrv.TraerUnaMesaPorNumero(pedido.mesa).subscribe((m : any)=>{
+      let mesa = m[0] as Mesa
       mesa.cliente_uid= "";
       this.bdSrv.ModificarMesa(mesa)
       this.bdSrv.ModificarClienteMesa(pedido.uidCliente,0)

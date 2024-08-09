@@ -36,6 +36,12 @@ export class BaseDatosService {
       return data
     }
 
+    //Trae un observable del cliente obtenido por su UID
+    ObservarClienteUid(uid : string){
+      const q = query(collection(this.firestore, 'clientes'), where("uid", "==", uid));
+      return collectionData(q)
+    }
+
     // Trae uno o mas clientes si estan en Fila de Espera
     async TraerClientesEnFila() {
       let data:any;
@@ -124,6 +130,12 @@ export class BaseDatosService {
       return data
     }
 
+    //Trae un observable del Empleado obtenido por su UID
+    ObservarEmpleadoUid(uid : string){
+      const q = query(collection(this.firestore, 'empleados'), where("uid", "==", uid));
+      return collectionData(q)
+    }
+
     // Trae uno o mas empleados por tipo
     async TraerEmpleadosPorTipo(tipo : string) {
       let data:any;
@@ -145,6 +157,12 @@ export class BaseDatosService {
       });
 
       return data
+    }
+
+    //Trae un observable del Empleado obtenido por su UID
+    ObservarAdministradorUid(uid : string){
+      const q = query(collection(this.firestore, 'administradores'), where("uid", "==", uid));
+      return collectionData(q)
     }
 
     async TraerAdministradoresPorTipo(tipo : string) {
@@ -277,7 +295,12 @@ export class BaseDatosService {
       return updateDoc(documento, JSON.parse(JSON.stringify(mesa)));
     }
 
-    async TraerUnaMesaPorNumero(numero : number){
+    TraerUnaMesaPorNumero(numero : number){
+      const q = query(collection(this.firestore, 'mesas'), where("numero", "==", numero));
+      return collectionData(q)
+    }
+
+    async TraerMesaPorNumeroPromesa(numero : number){
       let data:any;
       const q = query(collection(this.firestore, 'mesas'), where("numero", "==", numero));
       const querySnapshot = await getDocs(q);
@@ -435,110 +458,4 @@ export class BaseDatosService {
 
   //#endregion
 
-
-  //Alta de empleado en firestore
-  //Setea el id del empleado que hace referencia al id del registro en firestore, para no tener que setearlo a la hora de traer los registros
-  // AltaEmpleado(empleado:Empleado)
-  // {
-  //   const coleccion = collection(this.firestore,'empleados')
-  //   const documento = doc(coleccion);
-  //   const id = documento.id;
-  //   empleado.id = id;
-
-  //   let usuario = {
-  //     id:"",
-  //     uid:id,
-  //     rol:"empleado",
-  //     tipo:empleado.tipo
-  //   }
-  //   setDoc(documento,JSON.parse(JSON.stringify(empleado)));
-  //   this.AltaUsuario(usuario);
-  // }
-
-  // async TraerEmpleadoPorDNI(dni:string){
-  //   let data:any;
-  //   const q = query(collection(this.firestore, 'empleados'), where("dni", "==", dni));
-  //   const querySnapshot = await getDocs(q);
-  //   querySnapshot.forEach((doc) => {
-  //     data = JSON.parse(JSON.stringify(doc.data()))
-  //   });
-
-  //   return data
-  // }
-
-  // TraerEmpleados(){
-  //   const coleccion = collection(this.firestore,'empleados')
-  //   return collectionData(coleccion);
-  // }
-
-  // //Alta de administrador en firestore
-  // AltaAdministrador(administrador:Administrador)
-  // {
-  //   const coleccion = collection(this.firestore,'administradores')
-  //   const documento = doc(coleccion);
-  //   const id = documento.id;
-  //   administrador.id = id;
-
-  //   let usuario = {
-  //     id:"",
-  //     uid:id,
-  //     rol:"administrador",
-  //     tipo:administrador.tipo
-  //   }
-  //   setDoc(documento,JSON.parse(JSON.stringify(administrador)));
-  //   this.AltaUsuario(usuario);
-  // }
-
-  // TraerAdministrador(){
-  //   const coleccion = collection(this.firestore,'administradores')
-  //   return collectionData(coleccion);
-  // }
-
-  // //Alta de mesas en firestore
-  // AltaMesa(mesa:Mesa)
-  // {
-  //   const coleccion = collection(this.firestore,'mesas')
-  //   const documento = doc(coleccion);
-  //   const id = documento.id;
-  //   mesa.id = id;
-  //   setDoc(documento,JSON.parse(JSON.stringify(mesa)));
-  // }
-
-  // TraerMesas(){
-  //   const coleccion = collection(this.firestore,'mesas')
-  //   return collectionData(coleccion);
-  // }
-
-  // //Alta de coleccion general de usuarios
-  // AltaUsuario(usuario:any)
-  // {
-  //   const coleccion = collection(this.firestore,'usuarios')
-  //   const documento = doc(coleccion);
-  //   const id = documento.id;
-  //   usuario.id = id;
-  //   setDoc(documento,JSON.parse(JSON.stringify(usuario)));
-  // }
-
-  // AltaCliente(cliente:Cliente)
-  // {
-  //   const coleccion = collection(this.firestore,'clientes')
-  //   const documento = doc(coleccion);
-  //   const id = documento.id;
-  //   cliente.id = id;
-
-  //   let usuario = {
-  //     id:"",
-  //     uid:id,
-  //     rol:"cliente",
-  //     tipo:cliente.tipo
-  //   }
-  //   setDoc(documento,JSON.parse(JSON.stringify(cliente)));
-  //   this.AltaUsuario(usuario);
-  // }
-
-  // TraerClientes()
-  // {
-  //   const coleccion = collection(this.firestore,'clientes')
-  //   return collectionData(coleccion);
-  // }
 }

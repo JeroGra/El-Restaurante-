@@ -32,15 +32,19 @@ export class MesaClientePage {
 
   constructor(public bd : BaseDatosService, private toastController : ToastController, public qr : QrService, private navCtrl: NavController,
     private pushSrv:PushNotificationService) {
-    ///Obtengo la mesa del user logeado pero primero traigo el cliente logeado (corregir cuando se maneje el nuevo log)
+    ///Obtengo la mesa del user logeado pero primero traigo el cliente logeado 
     this.loading = true
     let cli = this.bd.Getlog()
     console.log(cli)
     if(cli !== null){
       console.log(cli)
+      // Seteamos el cliente de forma rapida ya que lo necesitamos antes de que se pueda leer del observable
       this.cliente = cli as Cliente
-      this.bd.TraerUnaMesaPorNumero(this.cliente.mesa_asignada).then((m) => {
-        this.mesa = m
+      // Actualizamos el cliente en paralelo
+      this.TraerCliente(cli.uid)
+
+      this.bd.TraerUnaMesaPorNumero(this.cliente.mesa_asignada).subscribe((m) => {
+        this.mesa = m[0] as Mesa
 
         console.info(this.mesa)
         this.bd.TraerProductos().subscribe((data) => {
@@ -84,16 +88,22 @@ export class MesaClientePage {
         })
 
         if(this.mesa.cliente_uid === this.cliente.uid){
-          this.presentToast("top","Bienvenido a su mesa","primary")
+          this.presentToast("middle","Bienvenido a su mesa","primary")
           this.mesaVinculada = true
           this.loading = false;
         }else{
-          this.presentToast("top","Mesa Aun no Vinculada! Escanee su QR","warning")
+          this.presentToast("middle","Mesa Aun no Vinculada! Escanee su QR","warning")
           this.loading = false;
         }
       })
     }
 
+  }
+
+  TraerCliente(uid : string){
+    this.bd.ObservarClienteUid(uid).subscribe((clis : any) => {
+      this.cliente = clis[0] as Cliente
+    })
   }
 
   async presentToast(position : 'top' | 'middle', message = "", color = "danger"){

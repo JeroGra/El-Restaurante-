@@ -39,14 +39,10 @@ export class HomePage implements OnDestroy {
 
     let user = this.bd.Getlog()
     if(user){
-      console.log(this.bd.userRol)
-      console.info(user)
-      this.usuario = user
-      this.cliente = user as Cliente
-      this.noUser = false
+      this.TraerUsuario()
     }
 
-    console.log(this.usuario)
+    //console.log(this.usuario)
 
     this.mi_token = localStorage.getItem("token_device") as string
     if(!(this.mi_token === this.usuario.token_mensajes)) {
@@ -75,31 +71,39 @@ export class HomePage implements OnDestroy {
    TraerUsuario() {
     switch(this.bd.userType){
       case "Propietario":
-        this.bd.TraerAdministradoresPorUid(this.bd.userLogUid).then((user : Administrador) => {
-          this.usuario = user
+        this.bd.ObservarAdministradorUid(this.bd.userLogUid).subscribe((user : any) => {
+          this.usuario = user[0] as Administrador
           this.noUser = false
+          console.log(this.usuario)
+          this.bd.ActualizarLog(this.usuario)
         })
       break
 
       case "Supervisor":
-        this.bd.TraerAdministradoresPorUid(this.bd.userLogUid).then((user : Administrador) => {
-          this.usuario = user
+        this.bd.ObservarAdministradorUid(this.bd.userLogUid).subscribe((user : any) => {
+          this.usuario = user[0] as Administrador
           this.noUser = false
+          console.log(this.usuario)
+          this.bd.ActualizarLog(this.usuario)
         })
       break;
 
       case "Empleado":
-        this.bd.TraerEmpleadoPorUid(this.bd.userLogUid).then((user : Empleado) => {
-          this.usuario = user
+        this.bd.ObservarEmpleadoUid(this.bd.userLogUid).subscribe((user : any) => {
+          this.usuario = user[0] as Empleado
           this.noUser = false
+          console.log(this.usuario)
+          this.bd.ActualizarLog(this.usuario)
         })
       break;
 
       case "Cliente":
-        this.bd.TraerClientePorUid(this.bd.userLogUid).then((user : Cliente) => {
-          this.usuario = user
-          this.cliente = user
+        this.bd.ObservarClienteUid(this.bd.userLogUid).subscribe((user : any) => {
+          this.usuario = user[0] as Cliente
+          this.cliente = user[0] as Cliente
           this.noUser = false
+          console.log(this.usuario)
+          this.bd.ActualizarLog(this.usuario)
         })
       break;
     }
@@ -146,33 +150,52 @@ export class HomePage implements OnDestroy {
     }
 
     MesaAsignada(mesa: number){
-    console.log(this.cliente.uid)
-    this.bd.TraerClientePorUid(this.cliente.uid).then((cli) => {
-      console.log(cli)
-      console.log(mesa)
-      this.cliente = cli as Cliente
-      this.usuario = cli as Cliente
-      this.bd.ActualizarLog(this.cliente)
-      if(this.cliente.mesa_asignada === mesa) {     
-        //Vincular la mesa y llevar al usuario al apartado de la mesa
-        this.bd.TraerUnaMesaPorNumero(this.cliente.mesa_asignada).then((mesa_asing) => {
-          let mesaCliente = new Mesa
-          mesaCliente = mesa_asing as Mesa
-          mesaCliente.cliente_uid = this.cliente.uid
+      // Optimizando el codigo, no se necesita obtener otra vez el usuario ya que se actualiza solo al leerlo del observable
+      if(this.cliente.mesa_asignada === mesa) {
+        let mesa_cliente = new Mesa
+        this.bd.TraerMesaPorNumeroPromesa(this.cliente.mesa_asignada).then((mesa : any) => {
+          mesa_cliente = mesa as Mesa
+          mesa_cliente.cliente_uid = this.cliente.uid
           this.presentToast("middle","Mesa Vinculada! Redirigiendo...","primary",3000)
-          this.bd.ModificarMesa(mesaCliente).then(() => {
-            navigator.vibrate(500)
-            this.navCtrl.navigateRoot(['/mesa-cliente'])
+            this.bd.ModificarMesa(mesa_cliente).then(() => {
+              navigator.vibrate(500)
+              this.navCtrl.navigateRoot(['/mesa-cliente'])
           })
         })
-        //asignar usuario
-        //
-      } else if(this.cliente.mesa_asignada === 0){
+      } else if(this.cliente.mesa_asignada === 0) {
         this.presentToast("middle","No Tiene Mesa Asiganda!")
       } else {
         this.presentToast("middle","Mesa Asignada Incorrecta!","warning")
       }
-    })
+
+
+    // console.log(this.cliente.uid)
+    // this.bd.TraerClientePorUid(this.cliente.uid).then((cli) => {
+    //   console.log(cli)
+    //   console.log(mesa)
+    //   this.cliente = cli as Cliente
+    //   this.usuario = cli as Cliente
+    //   this.bd.ActualizarLog(this.cliente)
+    //   if(this.cliente.mesa_asignada === mesa) {     
+    //     //Vincular la mesa y llevar al usuario al apartado de la mesa
+    //     this.bd.TraerUnaMesaPorNumero(this.cliente.mesa_asignada).subscribe((mesa_asing) => {
+    //       let mesaCliente = new Mesa
+    //       mesaCliente = mesa_asing[0] as Mesa
+    //       mesaCliente.cliente_uid = this.cliente.uid
+    //       this.presentToast("middle","Mesa Vinculada! Redirigiendo...","primary",3000)
+    //       this.bd.ModificarMesa(mesaCliente).then(() => {
+    //         navigator.vibrate(500)
+    //         this.navCtrl.navigateRoot(['/mesa-cliente'])
+    //       })
+    //     })
+    //     //asignar usuario
+    //     //
+    //   } else if(this.cliente.mesa_asignada === 0){
+    //     this.presentToast("middle","No Tiene Mesa Asiganda!")
+    //   } else {
+    //     this.presentToast("middle","Mesa Asignada Incorrecta!","warning")
+    //   }
+    // })
 
    }
 
