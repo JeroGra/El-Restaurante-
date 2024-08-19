@@ -15,24 +15,27 @@
         <ion-fab-button class="fabs-btns" (click)="ConsultarMozo()">
           <ion-icon name="chatbubbles"></ion-icon>
         </ion-fab-button>
-        <ion-fab-button class="fabs-btns" *ngIf="estadoPedido === 'preparacion' || estadoPedido === 'recibido' || estadoPedido === 'cocinado'" (click)="NavegarListadoJuegos()">
-          <ion-icon name="game-controller"></ion-icon>
+        <ion-fab-button class="fabs-btns" (click)="MostrarProductos()">
+          <ion-icon name="card"></ion-icon>
         </ion-fab-button>
-        <ion-fab-button class="fabs-btns" *ngIf="(estadoPedido === 'preparacion' || estadoPedido === 'recibido' || estadoPedido === 'cocinado') && !realizoEncuesta" (click)="MostrarEncuesta()">
+        <!-- <ion-fab-button class="fabs-btns" *ngIf="estadoPedido === 'preparacion' || estadoPedido === 'recibido' || estadoPedido === 'cocinado'" (click)="NavegarListadoJuegos()">
+          <ion-icon name="game-controller"></ion-icon>
+        </ion-fab-button> -->
+        <ion-fab-button class="fabs-btns" *ngIf="(estadoPedido === 'preparacion' || estadoPedido === 'entregado' || estadoPedido === 'preparado') && !realizoEncuesta" (click)="MostrarEncuesta()">
           <ion-icon name="create"></ion-icon>
         </ion-fab-button>
-        <ion-fab-button class="fabs-btns" *ngIf="estadoPedido === 'recibido'" (click)="PedirCuenta()">
+        <ion-fab-button class="fabs-btns" *ngIf="estadoPedido === 'entregado'" (click)="PedirCuenta()">
           <ion-icon name="card"></ion-icon>
         </ion-fab-button>
       </ion-fab-list>
     </ion-fab>
 
-    <div class="contenedor-estado-pedido" *ngIf="qrEscaneado">
+    <div class="contenedor-estado-pedido" *ngIf="pedido !== null">
       <div *ngIf="noRealizoPedido">
         <p>Haga su pedido escaneando el QR de su mesa</p>
         <ion-icon name="qr-code" class="icono-estado"></ion-icon>
       </div>
-      <div *ngIf="estadoPedido === 'revision'">
+      <div *ngIf="estadoPedido === 'pendiente'">
         <p>Su pedido está en proceso de revisión</p>
         <ion-icon name="alert-circle" class="icono-estado"></ion-icon>
       </div>
@@ -40,13 +43,13 @@
         <p>Su pedido está siendo preparado. <br>Tiene un tiempo estimado de {{pedido.tiempoPreparacion}} minutos</p>
         <ion-spinner></ion-spinner>
       </div>
-      <div *ngIf="estadoPedido === 'cocinado'">
+      <div *ngIf="estadoPedido === 'preparado'">
         <p>¡Su pedido está listo!. En un momento se lo llevaremos</p>
-        <ion-button (click)="PedidoRecibido()" id="btn_confirmar_pedido">
+        <ion-button (click)="PedidoEntregado()" id="btn_confirmar_pedido">
           <ion-icon name="notifications" class="icono-estado"></ion-icon>
         </ion-button>
       </div>
-      <div *ngIf="estadoPedido === 'recibido'">
+      <div *ngIf="estadoPedido === 'entregado'">
         <p>¡Disfrute de la comida!</p>
         <ion-icon name="restaurant" class="icono-estado"></ion-icon>
       </div>

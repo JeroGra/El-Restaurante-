@@ -18,7 +18,6 @@ export class CuentaPage {
   mostrarPropina = false;
   pedido:Pedido = new Pedido()
   propinaCargada:boolean = false;
-  descuentosJuegos:number = 0;
   totalFinal:number = 0;
 
   constructor(public qr : QrService,private bdSrv:BaseDatosService,private navCtrl:NavController,private pushSrv:PushNotificationService,private toastCtrl:ToastController) {
@@ -34,9 +33,7 @@ export class CuentaPage {
             res.forEach((pe : Pedido) => {
               if(pe.estado !== "finalizado") {
                 this.pedido = pe
-                this.propinaCargada = this.pedido.cargoPropina;
-                this.descuentosJuegos = ((this.pedido.total * this.pedido.descuentoJuego)/100)
-                this.totalFinal = (this.pedido.total + this.pedido.propina) - this.descuentosJuegos;
+                this.totalFinal = this.pedido.total + this.pedido.propina;
               }
               else{
                 localStorage.removeItem("pedido")
@@ -75,7 +72,6 @@ export class CuentaPage {
   {
     const propinaTotal = (this.pedido.total * porcentajePropina) / 100;
     this.bdSrv.CargarPropinaPedido(this.pedido,porcentajePropina,propinaTotal,true)
-    this.pedido.porcentajePropina = porcentajePropina
     this.pedido.propina = propinaTotal
     localStorage.setItem("pedido",JSON.stringify(this.pedido))
     this.propinaCargada = true; 

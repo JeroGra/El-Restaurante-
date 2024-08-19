@@ -65,10 +65,6 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/cuenta/cuenta.module').then( m => m.CuentaPageModule)
   },
   {
-    path: 'solicitar-pago-qr',
-    loadChildren: () => import('./paginas/solicitar-pago-qr/solicitar-pago-qr.module').then( m => m.SolicitarPagoQrPageModule)
-  },
-  {
     path: 'juegos',
     loadChildren: () => import('./paginas/juegos/juegos.module').then( m => m.JuegosPageModule)
   },

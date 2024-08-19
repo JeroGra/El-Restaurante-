@@ -27,9 +27,6 @@
           <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;"><b>SUBTOTAL:</b> ${{pedido.total}}</td>
         </tr>
         <tr>
-          <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;"><b>DESCUENTO JUEGOS:</b> ${{descuentosJuegos}}</td>
-        </tr>
-        <tr>
           <td colspan="3" style="font-size: 25; font-weight: bolder;color: black;"><b>PROPINA:</b> ${{pedido.propina}}</td>
         </tr>
         <tr>
@@ -42,8 +39,7 @@
       <p style="text-align: center;font-size: large;color: black;font-weight: bold;">Su pago está siendo validado</p>
     </div>
   </div>
-  <ion-button *ngIf="!propinaCargada && !qr.scan" (click)="ScanPropina()"  size="large" fill="solid"  expand="block" id="btn_ingresar">Agregar Propina</ion-button>
-  <ion-button *ngIf="mostrarCuenta && !qr.scan && !(pedido.estado === 'pendiente-pago')" (click)="ScanPropina()"  size="large" fill="outline"  expand="block" id="btn_borrar">Pagar con QR</ion-button>
+  <ion-button *ngIf="!propinaCargada && !qr.scan && !(pedido.estado === 'pendiente-pago')" (click)="ScanPropina()"  size="large" fill="solid"  expand="block" id="btn_ingresar">Agregar Propina</ion-button>
   <ion-button *ngIf="mostrarCuenta && !qr.scan && !(pedido.estado === 'pendiente-pago')" (click)="Pagar()"  size="large" fill="outline"  expand="block" id="btn_borrar">Pagar Efectivo</ion-button>
   </div>
 </ion-content>

@@ -25,7 +25,6 @@ export class MesaClientePage {
   listadoProductos = false;
   pedido:any;
   estadoPedido:any;
-  qrEscaneado:boolean = true;
   noRealizoPedido:boolean = true;
   realizoEncuesta:boolean = false;
   mostrarEncuesta:boolean = false;
@@ -55,32 +54,20 @@ export class MesaClientePage {
         })
 
         this.bd.TraerUnPedidoPorMesa(this.mesa.numero).subscribe((res:any) => {
-
           console.log(res)
-
           if(res.length != 0)
           {
               res.forEach((pe : Pedido) => {
-                  if(pe.estado !== "finalizado") {
+                //Se verifica que el pedido sea distinto de finalizado y denegado
+                  if(pe.estado !== "finalizado" &&  pe.estado !== "denegado") {
                     this.pedido = pe
                     this.noRealizoPedido = false;
-                    this.loading = false
+                    this.estadoPedido = pe.estado;
                     this.realizoEncuesta = pe.realizoEncuesta;
-                    
-                    if(pe.estado === "preparacion") {
-                      this.qrEscaneado = true;
-                    } else if(pe.estado === "cocinado") {
-                      this.qrEscaneado = true;
-                    } else if(pe.estado === "recibido") {
-                      this.qrEscaneado = true;
-                      this.estadoPedido = "recibido"
-                    } else if(pe.estado === "cuenta" || pe.estado === "pendiente-pago") {
+                    this.loading = false
+                    if(pe.estado === "cuenta" || pe.estado === "pendiente-pago") {
                       this.NavegarCuentaDelPedido()
                     }
-                    else {
-                      this.qrEscaneado = false;
-                    }
-
                   }
               });
 
@@ -123,19 +110,14 @@ export class MesaClientePage {
     this.navCtrl.navigateRoot(["/chat"])
   }
 
-  //Ver encuestas
-  VerEncuestas(){
-    console.info(this.pedido)
-  }
-
   MostrarProductos(){
     this.listadoProductos = true;
     this.mesaVinculada = false;
   }
 
-  PedidoRecibido()
+  PedidoEntregado()
   {
-    this.bd.ModificarEstadoPedido(this.pedido,"recibido")
+    this.bd.ModificarEstadoPedido(this.pedido,"entregado")
   }
 
   PedidoCargado($event:any)
@@ -146,9 +128,8 @@ export class MesaClientePage {
     this.pedido = $event;
     this.bd.TraerPedidoPorUid(this.pedido.uid).subscribe((res) => {
       this.pedido = res;
-      this.qrEscaneado = false;
     })
-    this.presentToast("middle","Pedido realizado con éxito!. Compruebe el estado de su pedido escaneando el QR","primary")
+    this.presentToast("middle","Pedido realizado con éxito!.","primary")
   }
 
   // Escan del qr para poder ver la carta y realizar el pedido.
@@ -171,7 +152,6 @@ export class MesaClientePage {
     {
       if(this.pedido != null)
       {
-        this.qrEscaneado = true
         //Se hace un check para ver si muestro el grafico de las encuestas o no
         if(this.estadoPedido === "recibido" && (!(this.realizoEncuesta) || this.realizoEncuesta))
         {
@@ -200,13 +180,8 @@ export class MesaClientePage {
   NavegarCuentaDelPedido()
   {
     localStorage.setItem("pedido",JSON.stringify(this.pedido))
+    this.loading = false
     this.navCtrl.navigateRoot(['/cuenta'])
-  }
-
-  NavegarListadoJuegos()
-  {
-    localStorage.setItem("pedido",JSON.stringify(this.pedido))
-    this.navCtrl.navigateForward(['/juegos'])
   }
 
   MostrarEncuesta()

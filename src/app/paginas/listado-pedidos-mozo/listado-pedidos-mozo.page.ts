@@ -34,7 +34,7 @@ export class ListadoPedidosMozoPage {
     if(this.usuario !== null)
     {
       //Traigo los pedidos que recien se agregaron
-      this.bdSrv.TraerPedidosConEstado("revision").subscribe((pedidos) => {
+      this.bdSrv.TraerPedidosConEstado("pendiente").subscribe((pedidos) => {
         if(pedidos)
         {
           this.loading = false;
@@ -53,7 +53,7 @@ export class ListadoPedidosMozoPage {
       })
 
       //traigo los pedidos que estan cocinados
-      this.bdSrv.TraerPedidosConEstado('cocinado').subscribe((pedidos) => {
+      this.bdSrv.TraerPedidosConEstado('preparado').subscribe((pedidos) => {
         //Lo que hago es filtrar los pedidos que tengan estado de cocinado
         if(pedidos)
           {
@@ -88,15 +88,8 @@ export class ListadoPedidosMozoPage {
   {
     this.loading = true;
     console.log(pedido)
-    this.bdSrv.EliminarPedido(pedido).then((res) => {
-      this.loading = false;
-    })
+    this.bdSrv.ModificarEstadoPedido(pedido, 'denegado')
   }
-
-  // PedidoEntregado(pedido:any)
-  // {
-  //   this.bdSrv.ModificarEstadoPedido(pedido, 'entregado')
-  // }
 
   MostrarPedidosEnRevision()
   {
@@ -158,7 +151,6 @@ export class ListadoPedidosMozoPage {
       mesa.cliente_uid= "";
       this.bdSrv.ModificarMesa(mesa)
       this.bdSrv.ModificarClienteMesa(pedido.uidCliente,0)
-      console.log("Se fue")
     }) 
   }
 }
