@@ -1,12 +1,9 @@
 import { Producto } from "./producto";
 
 export class Pedido {
-    comienzo: Date;
-    descuentoJuego: number;
+    fecha_finalizado: Date;
     estado: string;
-    jugo: boolean;
     mesa: number;
-    porcentajePropina: number;
     productos: Array<Producto>; 
     propina: number;
     soloBartender: boolean;
@@ -18,18 +15,11 @@ export class Pedido {
     uid: string;
     uidCliente: string;
     realizoEncuesta:boolean;
-    desc20:boolean = false;
-    desc10:boolean = false;
-    desc15:boolean = false;
-    cargoPropina:boolean = false;
 
     constructor() {
-        this.comienzo = new Date();
-        this.descuentoJuego = 0;
+        this.fecha_finalizado = new Date();
         this.estado = "";
-        this.jugo = false;
         this.mesa = 0;
-        this.porcentajePropina = 0;
         this.productos = [];
         this.propina = 0;
         this.soloBartender = false;

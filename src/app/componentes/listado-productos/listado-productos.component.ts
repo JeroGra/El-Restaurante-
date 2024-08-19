@@ -1,4 +1,5 @@
 import { Component, OnInit,Input, EventEmitter, Output } from '@angular/core';
+import { Pedido } from 'src/app/clases/pedido';
 import { BaseDatosService } from 'src/app/servicios/base-datos.service';
 import { PushNotificationService } from 'src/app/servicios/push-notification.service';
 
@@ -17,7 +18,7 @@ export class ListadoProductosComponent  implements OnInit {
   tiempoMaximo = 0;
   mostrarPedido:boolean = false
   loading:boolean = false;
-  pedidoFormato: any= {};
+  pedidoFormato: Pedido = new Pedido();
   cliente:any
   soloCocinero:boolean = false;
   soloBartender:boolean = false;
@@ -111,15 +112,12 @@ export class ListadoProductosComponent  implements OnInit {
       }
       this.pedidoFormato = {
         productos: this.productosAPedir,
-        estado: "revision",
+        estado: "pendiente",
         total: this.importeTotal,
         mesa: this.numeroMesa,
         tiempoPreparacion: this.tiempoMaximo,
-        comienzo: new Date(),
+        fecha_finalizado: new Date(),
         propina: 0,
-        descuentoJuego: 0,
-        jugo: false,
-        porcentajePropina: 0,
         uidCliente: this.cliente.uid,
         soloCocinero: this.soloCocinero,
         soloBartender: this.soloBartender,
@@ -127,7 +125,6 @@ export class ListadoProductosComponent  implements OnInit {
         bartenderOk: false,
         uid:"",
         realizoEncuesta:false,
-        cargoPropina:false
       };
 
       this.bdSrv.SubirPedido(this.pedidoFormato).then(() => {
@@ -144,7 +141,7 @@ export class ListadoProductosComponent  implements OnInit {
       this.soloBartender = false;
       this.productosAPedir = [];
       this.importeTotal = 0;
-      this.pedidoFormato = {};
+      this.pedidoFormato = new Pedido();
     }
   }
 

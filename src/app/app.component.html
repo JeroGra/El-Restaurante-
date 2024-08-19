@@ -28,10 +28,6 @@
     <ion-chip *ngIf="bd.userRol === 'Mozo'" (click)="MostrarPedidosMozo()">
       <img src="../assets/imagenes/pedidos.svg" />
     </ion-chip>
-    <br *ngIf="bd.userRol === 'Mozo'">
-    <ion-chip *ngIf="bd.userRol === 'Mozo'" (click)="SolicitarPago()">
-      <img src="../assets/imagenes/pagar.svg"  />
-    </ion-chip>
     <br *ngIf="bd.userRol === 'Cocinero'">
     <ion-chip *ngIf="bd.userRol === 'Cocinero'" (click)="MostrarCocinaCocineros()">
       <img src="../assets/imagenes/cocina.svg" />
@@ -48,36 +44,6 @@
     <ion-chip (click)="Salir()">
         <img src="../assets/imagenes/door-open-fill.svg" />
     </ion-chip>
-    <!-- <ion-chip (click)="Propietario()">
-      <ion-avatar>
-        <img src="../../assets/imagenes/propietario.png" />
-      </ion-avatar>
-      <h3>Propietario</h3>
-    </ion-chip>
-    <ion-chip (click)="Supervisor()">
-      <ion-avatar>
-        <img src="../../assets/imagenes/supervisor.png" />
-      </ion-avatar>
-      <h3>Supervisor</h3>
-    </ion-chip>
-    <ion-chip (click)="Metre()">
-      <ion-avatar>
-        <img src="../../assets/imagenes/empleado.png" />
-      </ion-avatar>
-      <h3>Metre</h3>
-    </ion-chip> -->
-   <!-- <ion-chip (click)="Cliente()">
-      <ion-avatar >
-        <img src="../../assets/imagenes/cliente.png" />
-      </ion-avatar>
-      <h3>Cliente</h3> 
-    </ion-chip> -->
-    <!-- <ion-chip (click)="Anonimo()">
-      <ion-avatar >
-        <img src="../../assets/imagenes/anonimo.png" />
-      </ion-avatar>
-      <h3>Anonimo</h3>
-    </ion-chip> -->
   </ion-content>
 </ion-menu>
   <ion-header *ngIf="bd.log">
