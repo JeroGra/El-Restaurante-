@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { MemoriaComponent } from './componentes/juegos/juego_20_desc/memoria/memoria.component';
 
 const routes: Routes = [
   {
@@ -63,10 +62,6 @@ const routes: Routes = [
   {
     path: 'cuenta',
     loadChildren: () => import('./paginas/cuenta/cuenta.module').then( m => m.CuentaPageModule)
-  },
-  {
-    path: 'juegos',
-    loadChildren: () => import('./paginas/juegos/juegos.module').then( m => m.JuegosPageModule)
   },
 ];
 
